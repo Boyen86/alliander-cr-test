@@ -30,13 +30,13 @@ Nodes have:
   * If it is a topology node, it will always have the label "topology"
   * If it is an asset node, it will have one of the following labels: "veld", "rail", "kabel", "transformator"
 
-A relationship describes the relation between nodes, it has the following properties:
+A relationship describes the relation between nodes, it must have at least the following properties:
 * an ID which is represented as a Long
 * a label, indicating the type of relationship, between topology nodes it is: "CONNECTS_TOPLOGY", between a topology node and an asset node it is "DESCRIBES_ASSET".
-* this relation is present on both nodes of the relationship.
+* a way of telling which nodes are connected by the relationship, a relationship never has more than 2 connections.
 
 <strong>Assignment 1: </strong>
-Create a data structure that can represent the connectivity as pictured above.
+Create a data structure that can represent the connectivity as pictured above. Make sure that your chosen datastructure allows for traversal between nodes.
 
 ### Assignment 2: Container densify
 To fulfill the wishes of each of our stakeholders, we need to be capable of offering different views on the topology. We do this by densifying the topology as shown in the picture below:
