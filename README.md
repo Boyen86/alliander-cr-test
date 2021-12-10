@@ -1,6 +1,6 @@
 # Assignment Connectivity Registry Recipes
 ### Introduction
-This project is a test project for the connectivity registry team. 
+This project is an assignment project for new potential developers of the connectivity registry team. 
 The goal is to get to know you better as a developer, how you write your code and what your approach to writing algoritms is.
 Additionally, it is a good check for you whether you would like to work in our team since it is a good reflection of the daily work in the connectivity registry team.
 
