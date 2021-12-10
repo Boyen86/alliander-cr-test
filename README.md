@@ -1,4 +1,4 @@
-# Read Me First
+# Assignment Connectivity Registry Recipes
 ### Introduction
 This project is a test project for the connectivity registry team. 
 The goal is to get to know you better as a developer, how you write your code and what your approach to writing algoritms is.
