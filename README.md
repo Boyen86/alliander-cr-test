@@ -4,17 +4,22 @@ This project is an assignment project for new potential developers of the connec
 The goal is to get to know you better as a developer, how you write your code and what your approach to writing algoritms is.
 Additionally, it is a good check for you whether you would like to work in our team since it is a good reflection of the daily work in the connectivity registry team.
 
-What we value & some tips:
+What we value:
 * Quality over quantity
 * DRY, SOLID, readable code
 * Optimized algorithms
-* We love tests, but for this assignment there's simply no time, please write your test cases in pseudocode
+* tests, tests, tests
+
+Some tips:
+* Pseudocode is also acceptable and expected given the amount of work.
+* We love tests, but for this assignment there's simply no time, please also write your test cases in pseudocode
+* The assignments are consecutive, a good solution for the first assignment will help with the second assignment and so on
+* Try to find a solution for all three assignments even if it is not perfect
 
 Please create and instantly push a new branch when you are ready to start. 
 Please make a pull request when you are done.
 There are three consecutive assignments, try to timebox each assignment to half an hour.
 
-Pseudocode is also acceptable and expected given the amount of work.
 Good luck!
 
 ### Assignment 1: Modeling the connectivity
