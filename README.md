@@ -8,7 +8,7 @@ What we value & some tips:
 * Quality over quantity
 * DRY, SOLID, readable code
 * Optimized algorithms
-* Tests tests tests!
+* We love tests, but for this assignment there's simply no time, please write your test cases in pseudocode
 
 Please create and instantly push a new branch when you are ready to start. 
 Please make a pull request when you are done.
