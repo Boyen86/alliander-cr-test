@@ -8,7 +8,7 @@ What we value:
 * Quality over quantity
 * DRY, SOLID, readable code
 * Optimized algorithms
-* tests, tests, tests
+* We love tests, but for this assignment time is short, peudocode and test cases will suffice.
 
 Some tips:
 * Pseudocode is also acceptable and expected given the amount of work.
