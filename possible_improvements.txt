@@ -1,0 +1,15 @@
+* All prints should be removed (but currently it's left in to more easily assess the correctness)
+* Lombok
+* Custom exceptions?
+* Hardcoded class names in error messages
+* SplitNode could be a separate NodeType
+* All nodes could just be Node, albeit with a different label.. (but I don't like using strings to differentiate type)
+* Keeping track of the nodes and the relationships in the graph, and in the nodes and relationships themselves is a bit of double work to update things. However, it does make it easier to traverse and look-up.
+* Dependent on how the nodes/relationships are accessed, you might want a different way of storing them altogether. Really depends on how it's going to be used though.
+* The initialization scripts can probably be improved
+* More tests, quick checks for the simple stuff, a bit more thorough for stuff like letContainerNodeAbsorbTopologyNode
+* The tests verifying relationships on the ContainerNode are a bit brittle
+* A better way of visualizing the current graph
+* Both recipes definitely have some code overlap. It could be a good candidate for DRY (maybe using the Strategy pattern), it could also be 'coincidental' overlap, e.g. that code could change independently of each other -> so abstracting it away can only lead to awkwardly trying to support 2 diverged recipes.
+* A label like "CONNECTS_TOPLOGY" has been referenced in multiple locations. If at some point it turns out this has to be "CONNECTS_TOPOLOGY" you'd have to change it everywhere. A constant or enum might have made more sense for the labels.
+* Probably a lot of Java best practices that are being ignored right now, I'm a Python guy. But I'd very much like to learn about these best practices.
