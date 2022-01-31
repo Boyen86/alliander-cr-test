@@ -49,7 +49,7 @@ Create a data structure that can represent the connectivity as pictured above.
 
 The requirements of a data structure describing this graph are:
 * that you can efficiently traverse over the graph i.e. move from 1 topology node to another
-* that given a layer name you can efficiently find data on that layer
+* that given a layer name (topology, asset) you can efficiently find data on that layer
 * that you can efficiently move between layers i.e. move from 1 asset node to a topology node or the other way around
 * that the data structure does not cost a lot to keep in memory
 
