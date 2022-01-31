@@ -1,11 +1,10 @@
 package alliandercrtest.connectivityregistry;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.Set;
 
 public class AssetNode extends Node {
 
-    private static List<String> allowedLabels = Arrays.asList("veld", "rail", "kabel", "transformator");
+    private final static Set<String> allowedLabels = Set.of("veld", "rail", "kabel", "transformator");
     
     public AssetNode(long id, String label) {
         if (!allowedLabels.contains(label)) {

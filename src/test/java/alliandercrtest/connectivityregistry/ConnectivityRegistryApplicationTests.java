@@ -20,24 +20,29 @@ class ConnectivityRegistryApplicationTests {
 
 	@Test
 	void testDensifyRecipeSimple() {
-		ConnectivityGraph connectivityGraph = new ConnectivityGraph();
-		connectivityGraph.initializeSimpleGraph();
+		NodeFactory nodeFactory = new NodeFactory();
+		RelationshipFactory relationshipFactory = new RelationshipFactory();
+		GraphFactory graphFactory = new GraphFactory(nodeFactory, relationshipFactory);
+		ConnectivityGraph connectivityGraph = graphFactory.createSimpleGraph();
 
-		ContainerRecipe containerRecipe = new ContainerRecipe();
+		ContainerRecipe containerRecipe = new ContainerRecipe(nodeFactory);
 		ConnectivityGraph result = containerRecipe.densify(connectivityGraph);
 		result.printNodes();
 
 		assertEquals(5, result.nodes.size());
+
 		ContainerNode cNode = (ContainerNode) result.nodes.get(4);
 		assertEquals(6, cNode.relationships.size());
 	}
 
 	@Test
 	void testDensifyRecipeComplex() {
-		ConnectivityGraph connectivityGraph = new ConnectivityGraph();
-		connectivityGraph.initializeComplexGraph();
+		NodeFactory nodeFactory = new NodeFactory();
+		RelationshipFactory relationshipFactory = new RelationshipFactory();
+		GraphFactory graphFactory = new GraphFactory(nodeFactory, relationshipFactory);
+		ConnectivityGraph connectivityGraph = graphFactory.createComplexGraph();
 
-		ContainerRecipe containerRecipe = new ContainerRecipe();
+		ContainerRecipe containerRecipe = new ContainerRecipe(nodeFactory);
 		ConnectivityGraph result = containerRecipe.densify(connectivityGraph);
 		result.printNodes();
 
@@ -48,10 +53,12 @@ class ConnectivityRegistryApplicationTests {
 
 	@Test
 	void testDensifySplitRecipeSimple() {
-		ConnectivityGraph connectivityGraph = new ConnectivityGraph();
-		connectivityGraph.initializeSimpleGraph();
+		NodeFactory nodeFactory = new NodeFactory();
+		RelationshipFactory relationshipFactory = new RelationshipFactory();
+		GraphFactory graphFactory = new GraphFactory(nodeFactory, relationshipFactory);
+		ConnectivityGraph connectivityGraph = graphFactory.createSimpleGraph();
 
-		SplitContainerRecipe containerRecipe = new SplitContainerRecipe();
+		SplitContainerRecipe containerRecipe = new SplitContainerRecipe(nodeFactory);
 		ConnectivityGraph result = containerRecipe.densify(connectivityGraph);
 		result.printNodes();
 
@@ -62,14 +69,16 @@ class ConnectivityRegistryApplicationTests {
 
 	@Test
 	void testDensifySplitRecipeComplex() {
-		ConnectivityGraph connectivityGraph = new ConnectivityGraph();
-		connectivityGraph.initializeComplexGraph();
-		connectivityGraph.printNodes();
+		NodeFactory nodeFactory = new NodeFactory();
+		RelationshipFactory relationshipFactory = new RelationshipFactory();
+		GraphFactory graphFactory = new GraphFactory(nodeFactory, relationshipFactory);
+		ConnectivityGraph connectivityGraph = graphFactory.createComplexGraph();
 
-		SplitContainerRecipe containerRecipe = new SplitContainerRecipe();
+		SplitContainerRecipe containerRecipe = new SplitContainerRecipe(nodeFactory);
 		ConnectivityGraph result = containerRecipe.densify(connectivityGraph);
 		result.printNodes();
 
 		assertEquals(11, result.nodes.size());
 	}
+
 }

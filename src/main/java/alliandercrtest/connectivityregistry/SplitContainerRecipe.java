@@ -5,6 +5,11 @@ import java.util.List;
 
 public class SplitContainerRecipe {
     List<Node> visited = new ArrayList<>();
+    private NodeFactory nodeFactory;
+
+    public SplitContainerRecipe(NodeFactory nodeFactory) {
+        this.nodeFactory = nodeFactory;
+    }
 
     public ConnectivityGraph densify(ConnectivityGraph input) {
         // Not a big fan of returning the same object instead of creating a new one. 
@@ -27,7 +32,8 @@ public class SplitContainerRecipe {
                 }
 
                 List<TopologyNode> connectedNodes = this.findAllConnectedTopologyNodes(topologyNode);
-                ContainerNode containerNode = input.createContainerNode();
+                ContainerNode containerNode = this.nodeFactory.createContainerNode();
+                input.registerNode(containerNode);
                 System.out.println(String.format("ContainerNode id: %d", containerNode.id));
                 for (TopologyNode connectedNode : connectedNodes) {
                     input.letContainerNodeAbsorbTopologyNode(containerNode, connectedNode);
