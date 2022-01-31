@@ -65,14 +65,16 @@ We call this a recipe, as there are many ways you can perform a densify.
 The recipe for this densify we call a "ContainerRecipe".
 
 <strong>Assignment 2:</strong>
-Create a ContainerRecipe class that will densify a collection of nodes to a container
+Create a solution that can perform a ContainerRecipe that will densify a collection of nodes to a container
 * The input for the densify method is in the format of the data structure defined in assignment 1
-* The output of the densify method is in the format of the data structure defined in assignment 1
+* The output should be compatible with the data structure as defined in assignment 1.
   * this should include a "container" node
   * this should include the asset nodes pointing towards the container node.
 * The container node should have the label "container"
 * The container node should have outgoing relationships
   * The outgoing relationship should have the same ID as the last relationship of the original node (indicated in red in the images)
+* The original nodes and relations, which are densified after this recipe, are not part of the output.
+* Only nodes from which the asset nodes meets a certain criteria, should be densified.
 
 ### Assignment 3: Split Container densify  
 Another form of densification is the Split Container recipe. In this recipe, containers are made, until there is a split in the graph. 
@@ -82,9 +84,9 @@ If this split is reached, stop the container, create a single topology node conn
 ![connectivity-densify-splitcontainerwithsplit](10.png)
 
 <strong>Assignment 3:</strong>
-Create a SplitContainerRecipe class that will densify a collection of nodes to a split container:
+Create a solution that can perform a SplitContainerRecipe that will densify a collection of nodes to a split container:
 * The input for the densify method is in the format of the data structure defined in assignment 1
-* The output of the densify method is in the format of the data structure defined in assignment 1
+* The output should be compatible with the data structure as defined in assignment 1.
   * this should include a "split" node for each split in the input
   * this should include the asset nodes pointing towards the split nodes.
   * this should include a "container" node for each chain of consecutive topology nodes that does not split
@@ -94,3 +96,5 @@ Create a SplitContainerRecipe class that will densify a collection of nodes to a
 * The split node has the label "split"  
 * The relations between the split node on the topology layer, and the container nodes on the topology layer, have the same ID as the relations from the input graph
 * Outgoing relations are handled the same as for the Container Recipe
+* The original nodes and relations, which are densified after this recipe, are not part of the output.
+* Only nodes from which the asset nodes meets a certain criteria, should be densified.
