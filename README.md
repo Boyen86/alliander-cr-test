@@ -8,7 +8,7 @@ What we value:
 * Quality over quantity
 * DRY, SOLID, readable code
 * Optimized algorithms
-* We love tests, but for this assignment time is short, peudocode and test cases will suffice.
+* We love tests, but for this assignment time is short, pseudocode and test cases will suffice.
 
 Some tips:
 * Pseudocode is also acceptable and expected given the amount of work.
@@ -16,9 +16,18 @@ Some tips:
 * The assignments are consecutive, a good solution for the first assignment will help with the second assignment and so on
 * Try to find a solution for all three assignments even if it is not perfect
 
-Please create and instantly push a new branch when you are ready to start. 
+Please request an invite to this repo so that you can push branches. Then, when you are ready to start, create and instantly push a new branch.
 Please make a pull request when you are done.
 There are three consecutive assignments, try to timebox each assignment to half an hour.
+
+NOTE: The assignment template is given in Java, but the following languages are also allowed:
+
+* Python
+* C#
+* Kotlin
+
+If you want to use a different language, please contact us to verify that that is also an acceptable language.
+
 
 Good luck!
 
@@ -41,7 +50,7 @@ Nodes have:
 
 A relationship describes the relation between nodes, it must have at least the following properties:
 * an ID which is represented as a Long
-* a label, indicating the type of relationship, between topology nodes it is: "CONNECTS_TOPLOGY", between a topology node and an asset node it is "DESCRIBES_ASSET".
+* a label, indicating the type of relationship, between topology nodes it is: "CONNECTS_TOPOLOGY", between a topology node and an asset node it is "DESCRIBES_ASSET".
 * a way of telling which nodes are connected by the relationship, a relationship never has more than 2 connections.
 
 <strong>Assignment 1: </strong>
