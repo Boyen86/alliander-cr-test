@@ -17,7 +17,7 @@ Some tips:
 * Try to find a solution for all three assignments even if it is not perfect
 
 Please request an invite to this repo so that you can push branches. Then, when you are ready to start, create and instantly push a new branch.
-Please make a pull request when you are done.
+Please make a fork, and then create a pull request when you are done.
 There are three consecutive assignments, try to timebox each assignment to half an hour.
 
 NOTE: The assignment template is given in Java, but the following languages are also allowed:
