@@ -1,0 +1,8 @@
+src/Alliander.Connectivity.Registry.Domain/bin/
+src/Alliander.Connectivity.Registry.Domain/obj/Alliander.Connectivity.Registry.Domain.csproj.nuget.dgspec.json
+src/Alliander.Connectivity.Registry.Domain/obj/
+src/Alliander.Connectivity.Registry/bin/
+src/Alliander.Connectivity.Registry/obj/
+test/Alliander.Connectivity.Registry.Test/bin/
+test/Alliander.Connectivity.Registry.Test/obj/Alliander.Connectivity.Registry.Test.csproj.nuget.dgspec.json
+test/Alliander.Connectivity.Registry.Test/obj/

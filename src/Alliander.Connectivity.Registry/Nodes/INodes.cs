@@ -19,5 +19,7 @@ namespace Alliander.Connectivity.Registry
         public string GetNodesByLayer(string label);
 
         public List<Node> GetNodes();
+
+        public long GetIdForContainer();
     }
 }

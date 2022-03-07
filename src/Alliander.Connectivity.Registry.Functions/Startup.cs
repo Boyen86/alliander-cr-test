@@ -2,6 +2,7 @@ using System.IO;
 using Microsoft.Azure.Functions.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 
 [assembly: FunctionsStartup(typeof(Alliander.Connectivity.Registry.Functions.Startup))]
 
@@ -17,9 +18,17 @@ namespace Alliander.Connectivity.Registry.Functions
         {
             var configuration = builder.GetContext().Configuration;
 
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            };
+
+
             builder.Services.AddSingleton(sp => FromNode());
             builder.Services.AddSingleton(sp => FromRelationship());
             builder.Services.AddSingleton(sp => FromContainerRecipe());
+            builder.Services.AddSingleton(sp => FromSplitContainer());
         }
 
         public static INodes FromNode()
@@ -35,6 +44,11 @@ namespace Alliander.Connectivity.Registry.Functions
         public static IContainerRecipe FromContainerRecipe()
         {
             return new ContainerRecipe();
+        }
+
+        public static ISplitContainer FromSplitContainer()
+        {
+            return new SplitContainer();
         }
     }
 }

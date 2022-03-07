@@ -19,6 +19,7 @@ namespace Alliander.Connectivity.Registry
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _cacheTimeout = TimeSpan.FromMinutes(5);
         private readonly string[] assetNodeLabel = { "veld", "rail", "kabel", "transformator" };
+        private long id;
 
         public void CreateNode(string label)
         {
@@ -119,6 +120,19 @@ namespace Alliander.Connectivity.Registry
         public List<Node> GetNodes()
         {
             return (List<Node>)_cache.Get("nodes");
+        }
+
+        public long GetIdForContainer()
+        {
+            if (id == 0)
+            {
+                var nodes = JsonConvert.DeserializeObject<IEnumerable<Node>>(GetNodesByLayer("veld"));
+                var maxId = nodes.Max(x => x.Id);
+                id = Interlocked.Increment(ref maxId);
+                return id;
+            }
+            id = Interlocked.Increment(ref id);
+            return id;
         }
 
         private static List<Node> GetNodes(long id, List<Node> nodes, Node node)
