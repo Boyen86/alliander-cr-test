@@ -31,7 +31,7 @@ namespace Alliander.Connectivity.Registry
                     var topologyNode = node;
                     var topologyRelationshipsOfNode = node.Relationship.Where(x => x.Label == "CONNECTS_TOPOLOGY").ToList();
                     var assetNode = node.Relationship.Where(x => x.Label == "DESCRIBES_ASSET").FirstOrDefault().NodeFrom;
-                    var containerNode = new Node() { Id = nodes.GetIdForContainer(), Label = "container", Relationship = new List<Relationships>() };
+                    var containerNode = new Node() { Id = nodes.GetIdOfNode(), Label = "container", Relationship = new List<Relationships>() };
 
                     for (; ; )
                     {
@@ -120,7 +120,7 @@ namespace Alliander.Connectivity.Registry
                 var assetNode = splitNode.Relationship.Where(x => x.Label == "DESCRIBES_ASSET").Select(x => x.NodeFrom).FirstOrDefault();
                 var containerNodes = splitContainerGraph.Where(x => x.Label == "container").ToList();
 
-                splitNode.Id = nodes.GetIdForContainer();
+                splitNode.Id = nodes.GetIdOfNode();
                 splitNode.Label = "split";
                 splitNode.Relationship = new List<Relationships>();
 

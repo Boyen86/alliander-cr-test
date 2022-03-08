@@ -6,8 +6,13 @@ namespace Alliander.Connectivity.Registry.Test
     public class Registry
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CreateNode()
         {
+            Nodes nodesRepository = new Nodes();
+            var node = nodesRepository.CreateNode("test");
+
+            Assert.AreEqual(0, node.Id);
+            Assert.AreEqual("test", node.Label);
         }
     }
 }

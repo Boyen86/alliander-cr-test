@@ -15,8 +15,16 @@ using Newtonsoft.Json;
 
 namespace Alliander.Connectivity.Registry.Functions
 {
+    /// <summary>
+    /// Api endpoints for nodes.
+    /// </summary>
     public class HttpTriggerConnectivityRegisterNodes
     {
+        /// <summary>
+        /// Constructor for <see cref="HttpTriggerConnectivityRegisterNodes" />
+        /// </summary>
+        /// <param name="nodes">Instance of <see cref="INodes"/></param>
+        /// <param name="relationship">Instance of <see cref="IRelationship"/></param>
         public HttpTriggerConnectivityRegisterNodes(INodes nodes, IRelationship relationship)
         {
             this.nodes = nodes;

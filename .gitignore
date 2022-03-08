@@ -6,3 +6,4 @@ src/Alliander.Connectivity.Registry/obj/
 test/Alliander.Connectivity.Registry.Test/bin/
 test/Alliander.Connectivity.Registry.Test/obj/Alliander.Connectivity.Registry.Test.csproj.nuget.dgspec.json
 test/Alliander.Connectivity.Registry.Test/obj/
+.vs/

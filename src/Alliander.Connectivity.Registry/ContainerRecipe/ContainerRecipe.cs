@@ -19,6 +19,11 @@ namespace Alliander.Connectivity.Registry
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _cacheTimeout = TimeSpan.FromMinutes(5);
 
+        /// <summary>
+        /// Densify the topology of the nodes.
+        /// </summary>
+        /// <param name="node">Instance of <see cref="INodes"/></param>
+        /// <returns></returns>
         public string Densify(INodes node)
         {
             var nodes = node.GetNodes().Where(x => x.Label != "topology").ToList();
@@ -42,6 +47,11 @@ namespace Alliander.Connectivity.Registry
             return JsonConvert.SerializeObject(allNodes);
         }
 
+        /// <summary>
+        /// Adds the assetnodes in the topology.
+        /// </summary>
+        /// <param name="assetNodes">Nodes <see cref="Node"/> of the type assets.</param>
+        /// <returns>List of asset nodes <see cref="Node"/></returns>
         private List<Node> CreateNodes(List<Node> assetNodes)
         {
             var nodes = new List<Node>();
@@ -57,15 +67,25 @@ namespace Alliander.Connectivity.Registry
             return nodes;
         }
 
+        /// <summary>
+        /// Create a new container node <see cref="Node"/>.
+        /// </summary>
+        /// <param name="id">Identifier of the node</param>
+        /// <returns>A container node <see cref="Node"/></returns>
         private Node CreateContainerNode(long id)
         {
             return new Node() { Id = Interlocked.Increment(ref id), Label = "container", Relationship = new List<Relationships>() };
         }
 
-        private void createRelationships(List<Node> outputNodes, Node containerNode)
+        /// <summary>
+        /// Creates relationships between asset and container node.
+        /// </summary>
+        /// <param name="assetNodes">List of asset nodes <see cref="Node"/></param>
+        /// <param name="containerNode">A container node <see cref="Node"/></param>
+        private void createRelationships(List<Node> assetNodes, Node containerNode)
         {
             var index = 0;
-            foreach (var node in outputNodes)
+            foreach (var node in assetNodes)
             {
                 var listRelationships = new List<Relationships>();
                 var relationship = new Relationships()

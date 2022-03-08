@@ -17,6 +17,12 @@ namespace Alliander.Connectivity.Registry
         private readonly IMemoryCache _cache;
         private readonly TimeSpan _cacheTimeout = TimeSpan.FromMinutes(5);
 
+        /// <summary>
+        /// Create a relationship
+        /// </summary>
+        /// <param name="from">Start node <see cref="Nodes"/> of the relationship.</param>
+        /// <param name="to">End node <see cref="Nodes"/> of the relationship.</param>
+        /// <param name="node">Instance of <see cref="INodes"/></param>
         public void CreateRelationship(long from, long to, INodes node)
         {
             var nodeFrom = node.GetNode(from);
@@ -25,10 +31,17 @@ namespace Alliander.Connectivity.Registry
             {
                 var label = DetermineLabel(nodeFrom, nodeTo);
                 var relationship = SaveRelationship(nodeFrom, nodeTo, label);
-                node.UpdateNodes(nodeFrom, nodeTo, relationship);
+                node.UpdateRelationshipOfNodes(nodeFrom, nodeTo, relationship);
             }
         }
 
+        /// <summary>
+        /// Save the relationship in the cache.
+        /// </summary>
+        /// <param name="nodeFrom">Start node <see cref="Nodes"/> of the relationship.</param>
+        /// <param name="nodeTo">End node <see cref="Nodes"/> of the relationship.</param>
+        /// <param name="label">Label <see cref="Relationships.Label"/> of the relationship.</param>
+        /// <returns></returns>
         private Relationships SaveRelationship(Node nodeFrom, Node nodeTo, string label)
         {
             var relationship = new Relationships() { Id = 0, Label = label, NodeFrom = nodeFrom, NodeTo = nodeTo };
@@ -46,6 +59,12 @@ namespace Alliander.Connectivity.Registry
             return relationship;
         }
 
+        /// <summary>
+        /// Detremine the name of the label <see cref="Relationships.Label"/>
+        /// </summary>
+        /// <param name="nodeFrom">Start node <see cref="Nodes"/> of the relationship.</param>
+        /// <param name="nodeTo">End node <see cref="Nodes"/> of the relationship.</param>
+        /// <returns></returns>
         private string DetermineLabel(Node nodeFrom, Node nodeTo)
         {
             if(nodeFrom.Label == "topology" && nodeTo.Label == "topology")

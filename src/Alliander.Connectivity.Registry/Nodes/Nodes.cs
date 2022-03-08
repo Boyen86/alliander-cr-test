@@ -21,21 +21,36 @@ namespace Alliander.Connectivity.Registry
         private readonly string[] assetNodeLabel = { "veld", "rail", "kabel", "transformator" };
         private long id;
 
-        public void CreateNode(string label)
+        /// <summary>
+        /// Creates a node.
+        /// </summary>
+        /// <param name="label">Label of the node.</param>
+        public Node CreateNode(string label)
         {
+            var newNode = new Node();
             if (!_cache.TryGetValue("nodes", out List<Node> outputNodes))
             {
                 outputNodes = new List<Node>();
-                outputNodes.Add(new Node() { Id = 0, Label = label });
+                newNode.Id = 0;
+                newNode.Label = label;
+                outputNodes.Add(newNode);
             }
             else
             {
-                var id = outputNodes.Max(x => x.Id);
-                outputNodes.Add(new Node() { Id = Interlocked.Increment(ref id), Label = label });
+                newNode.Id = GetIdOfNode();
+                newNode.Label = label;
+                
+                outputNodes.Add(newNode);
             }
             _cache.Set("nodes", outputNodes, _cacheTimeout);
+            return newNode;
         }
 
+        /// <summary>
+        /// Gets the node by identifier.
+        /// </summary>
+        /// <param name="id">Identifier of the node.</param>
+        /// <returns>A node <see cref="Node"/> <</returns>
         public Node GetNode(long id)
         {
             if (!_cache.TryGetValue("nodes", out List<Node> outputNodes))
@@ -45,7 +60,13 @@ namespace Alliander.Connectivity.Registry
             return outputNodes.Where(x => x.Id == id).FirstOrDefault();
         }
 
-        public void UpdateNodes(Node nodeFrom, Node nodeTo, Relationships relationship)
+        /// <summary>
+        /// Updates relationships of the node.
+        /// </summary>
+        /// <param name="nodeFrom">Node of the start.</param>
+        /// <param name="nodeTo">Node of the end.</param>
+        /// <param name="relationship">Relationship of the nodes.</param>
+        public void UpdateRelationshipOfNodes(Node nodeFrom, Node nodeTo, Relationships relationship)
         {
             if (_cache.TryGetValue("nodes", out List<Node> outputNodes))
             {
@@ -55,6 +76,10 @@ namespace Alliander.Connectivity.Registry
             }
         }
 
+        /// <summary>
+        /// Gets all node in the graph.
+        /// </summary>
+        /// <returns>String in json format of all nodes in the graph.</returns>
         public string GetAllNodes()
         {
             var nodes = (List<Node>) _cache.Get("nodes");
@@ -75,6 +100,11 @@ namespace Alliander.Connectivity.Registry
             return  JsonConvert.SerializeObject(graph);
         }
 
+        /// <summary>
+        /// Get a topology node by identifier.
+        /// </summary>
+        /// <param name="id">Identifier of the node.</param>
+        /// <returns>String in json format of the topology node.</returns>
         public string GetTopologyNodes(long id)
         {
             var nodes = (List<Node>)_cache.Get("nodes");
@@ -97,6 +127,11 @@ namespace Alliander.Connectivity.Registry
             return JsonConvert.SerializeObject(topologyNodes);
         }
 
+        /// <summary>
+        /// Get nodes in the graph by layer.
+        /// </summary>
+        /// <param name="label">Label of node.</param>
+        /// <returns>String in json format of nodes in the graph by given layer</returns>
         public string GetNodesByLayer(string label)
         {
             var nodes = (List<Node>)_cache.Get("nodes");
@@ -117,12 +152,21 @@ namespace Alliander.Connectivity.Registry
             return "Layer not found";
 
         }
+
+        /// <summary>
+        /// Get all nodes in the graph.
+        /// </summary>
+        /// <returns>List of <see cref="Node" /> in the graph</returns>
         public List<Node> GetNodes()
         {
             return (List<Node>)_cache.Get("nodes");
         }
 
-        public long GetIdForContainer()
+        /// <summary>
+        /// Gets the available identifier to save a node.
+        /// </summary>
+        /// <returns>Identifier in format long</returns>
+        public long GetIdOfNode()
         {
             if (id == 0)
             {
@@ -135,7 +179,11 @@ namespace Alliander.Connectivity.Registry
             return id;
         }
 
-        private static List<Node> GetNodes(long id, List<Node> nodes, Node node)
+        /// <summary>
+        /// Get all nodes in the graph.
+        /// </summary>
+        /// <returns>List of <see cref="Node" /> in the graph</returns>
+        private List<Node> GetNodes(long id, List<Node> nodes, Node node)
         {
             var topologyNodes = new List<Node>();
             topologyNodes.Add(node);
@@ -156,7 +204,13 @@ namespace Alliander.Connectivity.Registry
             return topologyNodes;
         }
 
-        private static void UpdateRelationshipNode(Node node, Relationships relationship, List<Node> outputNodes)
+        /// <summary>
+        /// Updates relationships of the node.
+        /// </summary>
+        /// <param name="node">A node <see cref="Node"/></param>
+        /// <param name="relationship">A relationship <see cref="Relationships"/></param>
+        /// <param name="outputNodes">List of <see cref="Relationships"/></param>
+        private void UpdateRelationshipNode(Node node, Relationships relationship, List<Node> outputNodes)
         {
             var nodes = outputNodes.Where(x => x == node).FirstOrDefault();
 
